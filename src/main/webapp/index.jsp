@@ -1,5 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="lk.ac.kln.model.PetFood" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -73,17 +75,72 @@
 </div>
 
 <div class="grid grid-cols-4 pt-20 px-20 gap-6 pb-10">
+    <%
+        List<PetFood> petFoods= (List<PetFood>) request.getAttribute("food");
+        for (PetFood p: petFoods) { %>
+    <div>
+        <img
+                src="<% out.println(p.getImageUrl()); %>"
+                alt="product image"
+        />
+        <h1 class="text-lg font-bold pt-5"><% out.println(p.getName()); %></h1>
+        <p>Price: <span><% out.println(p.getPrice()); %></span></p>
+    </div>
 
-    <c:forEach items="${food}" var="petFood">
-        <div>
+    <% } %>
+
+</div>
+
+<div
+        class="w-screen h-screen fixed z-50 top-0 left-0 right-0 bottom-0 bg-gray-900/80"
+>
+    <div
+            class="w-full h-full transform scale-[80%] bg-gray-50 grid grid-cols-3"
+    >
+        <div class="px-5 py-5">
             <img
                     src="https://peppermintcafe.lk/wp-content/uploads/2018/09/Chicken-and-Liver-Flavour-1.jpg"
-                    alt="product image"
+                    alt=""
+                    class="h-full"
             />
-            <h1 class="text-lg font-bold pt-5">Chicken and Liver Flavour</h1>
-            <p>Price: <span>Rs.510</span></p>
         </div>
-    </c:forEach>
+        <div
+                class="col-span-2 pt-20 px-10 flex flex-col justify-start items-center relative"
+        >
+            <h1 class="text-5xl font-bold">Chicken and Liver Flavour</h1>
+            <p class="text-xl pt-20 text-justify">
+                Product Information Pedigree Chicken & Milk 3Kg - Puppy PEDIGREE
+                Chicken & Milk for Puppy is a wholesome meal, packed with essential
+                nutrients vital to the healthy growth of your pet. The natural
+                goodness of cereals, chicken, meat, soybean, carrots,... Product
+                Information Pedigree Chicken & Milk 3Kg - Puppy PEDIGREE Chicken &
+                Milk for Puppy is a wholesome meal, packed with essential nutrients
+                vital to the healthy growth of your pet. The natural goodness of
+                cereals, chicken, meat, soybean, carrots,... Product Information
+                Pedigree Chicken & Milk 3Kg - Puppy PEDIGREE Chicken & Milk for
+                Puppy is a wholesome meal, packed with essential nutrients vital to
+                the healthy growth of your pet. The natural goodness of cereals,
+                chicken, meat, soybean, carrots,... Product Information Pedigree
+                Chicken & Milk 3Kg - Puppy PEDIGREE Chicken & Milk for Puppy is a
+                wholesome meal, packed with essential nutrients vital to the healthy
+                growth of your pet. The natural goodness of cereals, chicken, meat,
+                soybean, carrots,...
+            </p>
+            <p
+                    class="text-4xl font-bold absolute bottom-8 right-8 hover:bg-gray-900 hover:text-gray-50 transition-all duration-200 px-4 py-3 border-2 rounded-full border-gray-900"
+            >
+                LKR 510
+            </p>
+        </div>
+
+        <button
+                type="button"
+                id="closeBtn"
+                class="absolute top-5 right-5 text-6xl"
+        >
+            <i class="bi bi-x-circle-fill"></i>
+        </button>
+    </div>
 </div>
 
 <footer class="bg-gray-900 text-gray-300 w-full pb-14 relative mt-36">

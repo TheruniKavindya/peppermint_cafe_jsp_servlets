@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="peppermint_cafe" uuid="404963c9-82c6-4d3e-a851-996560993f2d">
+    <data-source source="LOCAL" name="Peppermint Cafe" uuid="2c8e5d52-8b19-48e0-a637-bb1b156b1198">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://database:5000/peppermint_cafe</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/peppermint</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

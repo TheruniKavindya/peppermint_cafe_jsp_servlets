@@ -1,42 +1,40 @@
 version: '.3.3'
 services:
-  database:
+  databse:
     image: mysql:5.7
     volumes:
       - db_data-1:/var/lib/mysql
       - ./mysql-dump:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: peppermint_cafe
-      MYSQL_USER: peppermint_admin
-      MYSQL_PASSWORD: peppermint_p
+      MYSQL_DATABASE: javalounge_cafe
+      MYSQL_USER: javalounge_admin
+      MYSQL_PASSWORD: javalounge_master_password
     ports:
-      - '5000:3306'
+      - '3306:3306'
   phpmyadmin:
     depends_on:
-      - database
+      - databse
     image: phpmyadmin/phpmyadmin
     ports:
       - '8081:80'
     environment:
-      PMA_HOST: database
+      PMA_HOST: databse
       MYSQL_ROOT_PASSWORD: root
   web:
     depends_on:
-      - database
-    image: tomcat
+      - databse
+    image: quay.io/wildfly/wildfly
     volumes:
-      - ./tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-      - ./target/servlet.war:/usr/local/tomcat/webapps/servlet.war
+      - /target/servlet.war:/opt/jboss/wildfly/standalone/deployments/
     ports:
-      - '8082:8080'
+      - '9000:8080'
+      - '9990:9990'
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: peppermint_cafe
-      MYSQL_USER: peppermint_admin
-      MYSQL_PASSWORD: peppermint_p
-    entrypoint: |
-      bash -c 'cp -a webapps.dist/manager webapps/; exec catalina.sh run'
+      MYSQL_DATABASE: javalounge
+      MYSQL_USER: javalounge_admin
+      MYSQL_PASSWORD: javalounge_master_password
 volumes:
   db_data-1:
     name: db_data-1

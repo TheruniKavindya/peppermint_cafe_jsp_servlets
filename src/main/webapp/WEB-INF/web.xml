@@ -3,4 +3,12 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
     <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>PetFoodController</servlet-name>
+        <servlet-class>lk.ac.kln.PetFoodController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PetFoodController</servlet-name>
+        <url-pattern>/peppermint</url-pattern>
+    </servlet-mapping>
 </web-app>
